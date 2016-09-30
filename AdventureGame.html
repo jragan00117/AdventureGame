@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" media="screen" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css">
+
+    <title>Funco Games</title>
+    </head>
+    <!--  -->
+    
+<body>
+    
+    <div id="show"></div>
+    
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    
+<script>
+    
+    var scene = 1;
+    var karma = 0;
+    var scid = 0;
+    
+    
+    var scenes = [
+    
+    {
+    'scene': 1,
+    'title':'The 16th Street Mall',
+    'description':'You are walking down the 16th Street Mall in Denver, CO. As you walk past McDonalds a man who is obviously upset and wearing no shirt approaches you with a large steel pipe in his hand. He is clearly angry and gesticulating wildly! What do you do? ',
+    'random': 10,
+    'option1':'fight',
+    'option2':'run',
+    'option3':'call cops',
+    'option1Val': 2,
+    'option2Val':0,
+    'option3Val':4
+        
+
+    },
+    
+    {
+    'scene': 2,
+    'title':'Red Rocks',
+    'description':'blah blah blah blah ',
+    'random': 10,
+    'option1':'blah blah 1',    
+    'option2':'blah blah 2',
+    'option3':'blah blah 3'    
+
+    },
+    
+    {
+    'scene': 3,
+    'title':'Union Station',
+    'description':'blah blah  ',
+    'random': 10,
+    'option1':'blah',    
+    'option2':'blah',
+    'option3':'blah'    
+
+    },
+    
+    {
+    'scene': 4,
+    'title':'Capital Building',
+    'description':'blah blah',
+    'random': 10,
+    'option1':'blah',    
+    'option2':'blah',
+    'option3':'blah'    
+
+    },
+
+    ];
+    
+    
+    init();
+    
+    
+    function init(){    
+        checkScene();
+       
+    }    
+        
+    function checkScene(){
+if(scene == 1 ){loadGameScene(1);}
+if(scene == 2 ){loadGameScene(2);}    
+if(scene == 3 ){loadGameScene(3);} 
+if(scene == 4) {loadGameScene(4);}
+    }
+    
+    
+    
+    function loadGameScene(scid){
+        //pos in array
+         scid = scid-1;    
+    var content = buildView(scid);
+document.getElementById('show').innerHTML = content;
+    }
+    
+    
+    function buildView(scid){
+    var text="";
+    text += '<h2>'+scenes[scid].title+'</h2>';    
+    text += '<p>'+scenes[scid].description+'</p>';
+    text += buildOptionsMenu(scid);
+        return text;
+    }
+    
+    function buildOptionsMenu(scid){
+    var text="";
+    text +=''+scenes[scid].option1+'<button class="btn btn-primary" onclick="checkAnswer(scid,1)">Choose</button><br/>';
+    text +=''+scenes[scid].option2+'<button  class="btn btn-primary" onclick="checkAnswer(scid,2)">Choose</button><br/>';
+    text +=''+scenes[scid].option3+'<button  class="btn btn-primary" onclick="checkAnswer(scid,3)">Choose</button><br/>';
+    
+    return text;    
+    checkAnswer(scid, butt);
+    } 
+     
+    //TODO check answer function
+    function checkAnswer(scid,butt)
+    {
+        if( butt == 1 )
+            {
+                
+                karma =karma + scenes[0].option1Val;
+                console.log(karma);
+            }
+        if(butt == 2)
+            {
+               karma =karma + scenes[0].option2Val;
+                console.log(karma);
+            }else{
+                
+               karma =karma + scenes[0].option3Val
+               console.log(karma);
+            }
+        
+        scene ++;
+    }
+    //TODO game over function
+    
+    //TODO point function
+    
+</script>
+    
+</body>
+</html>
